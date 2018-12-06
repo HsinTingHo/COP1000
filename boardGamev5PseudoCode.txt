@@ -1,0 +1,56 @@
+boardGamev5PseudoCode.txt
+Input: Player name,  and answers to cards
+Processing: 1. Display a window to take user name
+            2. Display greeting message, rule button, play button, and exit button on a window
+            3. If the user click on the rule button, pop out the rule window where the rule is explained
+            4. If user clicks play button,
+              a. Pop out question window.
+                a-1. Display questions from card.txt file and take user input for the answer
+              b. Pop out a results
+                b-1. window to inform user whether the input was correct and the points gained(or lost)
+                b-2. On the same window,  display user's current point
+              c. When user finish answering all the questions, pop out window to ask whether user wants to play again
+                c-1 If user click yes, repeat step 4
+                c-2 If user click no, display confirmation window to confirm whether the user want to quit
+                  c-2.1 If user clicked yes, exit the programmer
+                  c-2.2 If user clicked no, close the confirm window
+
+            5. If user clicks exit button
+              5-1 Pop out a confirmation window to confirm whether the user want to quit
+              5-2 If user clicked yes, exit the programmer
+              5-3 If user clicked no, close the confirm window
+
+Output: name window, name input box, greeting window, rule window, question window, position window, question, answer input box, exit window
+
+
+1. Declare and initialize variables.
+   intro = choice = ""
+   playAgain = finishedRules = "yes"
+   position = 0
+   invalid = True
+   fileName = "card.txt"
+   questions = []
+   answers = []
+   points = []
+
+2. graph name window with a text box for user name
+3. Display name window
+3. graph greeting window to greet with user.
+4. graph greeting message, rule button, play button, and exit button on the greeting window
+5. Display greeting window
+6. graph rule window with rule text and done button
+7. If the rule button is clicked, display the rule window
+8. open cards.txt file
+9. read cards.txt file line by line
+10.store question in each line in a variable
+11.store answer in each line in a variable
+12.store position in each line in a variable
+13.graph question window with question(each line of cards.txt), text box for answer, and a enter button
+14.after the enter button is clicked, compare user input with the correct answer
+15.display the answer entered, correct answer, advance or retrieve steps, current position, and next button
+16.repeat 13-15
+17.after all the questions are answered, pop out window to ask whether user wants to keep playing
+18.if yes, repeat 8-17
+19.if not, pop out confirm window to confirm whether user wants to quit
+20.if yes, display bye bye message
+22.if not, repeat 8-19

@@ -75,7 +75,7 @@ def main():
     inputLabel = Text(Point(175, 100), "Enter your name, please:")
     # Create Continue button
     firstButton = Rectangle(Point(200,140), Point(300, 175))
-    firstButton.setFill("silver")
+    firstButton.setFill("gray")
     firstButtonText = Text(Point(250, 155), "Continue")
     firstButton.draw(nameWin)
     firstButtonText.draw(nameWin)
@@ -109,8 +109,8 @@ def main():
     playButtonText = Text(Point(350, 325), "Play")
     exitButtonText = Text(Point(550, 325), "Exit")
     greeting = Text(Point(350,250), intro)
-    background = Image(Point(360,100), "fbi.gif")
-    background.draw(introWin)
+    #background = Image(Point(360,100), "fbi.gif")
+    #background.draw(introWin)
     ruleButton.draw(introWin)
     playButton.draw(introWin)
     exitButton.draw(introWin)
@@ -147,7 +147,10 @@ def main():
                 
                 try:
                     #open the card file
+                    #cardsFile = open(fileName, "r")
                     cards = open(fileName, "r").readlines()
+                    #eachLine.decode('utf-8').strip() for eachLine in cardsFile.readlines()]
+
                     for line in cards:
                         #seperate question, points, and answer in each line and store them in different lists
                         card = line.split("/")

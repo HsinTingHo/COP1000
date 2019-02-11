@@ -8,7 +8,7 @@ def main():
 
     intro = name = choice = cardTitle = question = ""
     playAgain = finishedRules = "yes"
-    position = 0
+    position = count = 0
     invalid = True
     fileName = "cards.txt"
     cardwidth = 500
@@ -30,67 +30,18 @@ def main():
         print('2. Play Game')
         print('3. Exit\n')
 
-    # Define rules
-    '''
-    def showRule():
-        msg = '\n\nHello, programmer! The FBI needs your assistance to catch a hacker.'
-        msg += '10 Python questions will be shown in cards randomly.'
-        msg += 'If you give the right answer, you can move forward; otherwise, move backward.'
-        msg += '\nYou will win the game after you have moved forward 20 steps.\n\n'
-        ruleWin = GraphWin("Rules", 300, 200)
-        rule = Text(Point(60, 70), msg)
-        rule.draw(ruleWin)
 
-
-    # Prompt user for their name
-    nameWin = GraphWin("User Name", 500, 250)
-    inputEntry = Entry(Point(350, 100), 10)
-    inputEntry.setText("YourName")
-    inputEntry.setFill("black")
-    inputEntry.setTextColor("light green")
-    inputLabel = Text(Point(175, 100), "Enter your name, please:")
-    # Create Continue button
-    firstButton = Rectangle(Point(200,140), Point(300, 175))
-    firstButton.setFill("gray")
-    firstButtonText = Text(Point(250, 155), "Continue")
-    firstButton.draw(nameWin)
-    firstButtonText.draw(nameWin)
-    inputEntry.draw(nameWin)
-    inputLabel.draw(nameWin)
-
-
-
-    nameContinue = False
-    while not nameContinue:
-        buttonClick = nameWin.getMouse()
-        name = inputEntry.getText()
-        clickXPos = buttonClick.getX()
-        clickYPos = buttonClick.getY()
-
-        if 200 <= clickXPos <= 300 and 140 <= clickYPos <= 175:
-            nameContinue = True
-            displayText = Text(Point(250, 200), "Let's begin, " + name +"!")
-            displayText.draw(nameWin)
-            time.sleep(3)
-            nameWin.close()
-    '''
     # Introduction and greeting window
 
-    intro = name + "\nWelcome to the FBI programmer game!\n"
-    introWin = GraphWin("FBI Programmer", 720, 400)
-    #ruleButton = Rectangle(Point(100, 300), Point(200, 350))
+    intro = name + "\nLet's crash GRE verbal reasoning!\n"
+    introWin = GraphWin("GRE voc", 720, 400)
     playButton = Rectangle(Point(300, 300), Point(400, 350))
     exitButton = Rectangle(Point(500, 300), Point(600, 350))
-    #ruleButtonText = Text(Point(150, 325), "Show Rules")
     playButtonText = Text(Point(350, 325), "Play")
     exitButtonText = Text(Point(550, 325), "Exit")
     greeting = Text(Point(350,250), intro)
-    #background = Image(Point(360,100), "fbi.gif")
-    #background.draw(introWin)
-    #ruleButton.draw(introWin)
     playButton.draw(introWin)
     exitButton.draw(introWin)
-    #ruleButtonText.draw(introWin)
     playButtonText.draw(introWin)
     exitButtonText.draw(introWin)
     greeting.draw(introWin)
@@ -102,18 +53,7 @@ def main():
         clickYPos = buttonClick.getY()
 
         if 300 <= clickYPos <= 350:
-            '''
-            if 100 <= clickXPos <= 200:
-                #rule window
-                cardTitle = "Rules"
-                msg = '\n\nHello, programmer! \nThe FBI needs your assistance to catch a hacker.\n'
-                msg += '14 Python questions will be shown in cards randomly.\n'
-                msg += 'If you give the right answer,\nyou can move forward; otherwise, move backward.\n'
-                msg += '\nYou will win the game after you have moved forward 20 steps.\n\n'
-                cardWin = GraphWin(cardTitle, cardwidth, cardheigth)
-                rule = Text(Point(cardwidth/2, cardheigth/2), msg)
-                rule.draw(cardWin)
-            '''
+
             #when play is clicked
             if 300 <= clickXPos <= 400:
                 position = 0
@@ -123,13 +63,15 @@ def main():
                 aList = []
 
                 try:
-                    
+
                     cards = open(fileName, "r").readlines()
 
 
                     for line in cards:
                         #seperate question, points, and answer in each line and store them in different lists
+
                         card = line.split("/")
+                        print(card)
                         qList.append(card[0])
                         pList.append(card[1])
                         aList.append(card[2])
@@ -147,7 +89,7 @@ def main():
                         cardWin = GraphWin(cardTitle, cardwidth, cardheigth)
 
                         #swich line at 5th word to keep text in the window
-
+                        count += 1
                         print(qList[x])
                         question = ""
                         word = qList[x].split(" ")
@@ -198,6 +140,7 @@ def main():
                                     text += "Retreat "+ pList[x]+ " steps."
 
                                 text += "You are currently at position "+ str(position)+"\n"
+                                text += "\n"+ str(count) +" / "+ str(len(cards))
                                 msg = Text(Point(cardwidth/2, cardheigth/2), text)
                                 msg.draw(resultWin)
                                 yesButton.draw(resultWin)
